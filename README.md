@@ -25,3 +25,18 @@ application = ProtocolTypeRouter({
     ),
 })
 
+
+# Jwt auth middleware
+
+ we add this middleware to asgi.py file like this:
+
+ django_asgi_app = get_asgi_application()
+
+ application = ProtocolTypeRouter({
+     "http": django_asgi_app,
+     "websocket": JWTAuthMiddleware(URLRouter(
+         your websocketurlpatterns
+     ))
+ })
+
+and you can send a token from header 
